@@ -1,17 +1,22 @@
 #Create a function that:
  #1. given a string “s”, reverse it.
 
+s='AnabelA e a anA comem anAnas'
+ss= 'aMor'
+
 def reverse_s(s):
     return(s[::-1])
-reverse_s('aMoR')
+
+print(f'Ex1: string: {ss} \nreversed string: {reverse_s(ss)}')
 
  #2. given a string “s”, returns how many “a” and “A” characters are present in it.
 
 def contA(s):
     c_a= s.count('a')
     c_A= s.count('A')
-    print(f'Dada a string: "{s}", contamos {c_a} letras "a" e {c_A} letras "A".')
-contA('AnabelA e a anA comem anAnas')
+    return (c_a,c_A)
+
+print(f'Ex2: Dada a string: "{s}", contamos {contA(s)[0]} letras "a" e {contA(s)[1]} letras "A".')
 
  #3. given a string “s”, returns the number of vowels there are present in it.
 
@@ -23,21 +28,23 @@ def conta_vogais(s):
         if vogal in s:
             c_v= s.count(vogal) + c_v
     return c_v
-conta_vogais('AnabelA e a anA comem anAnas')
+
+print(f'Ex3: na string "{s}", existem {conta_vogais(s)} vogais')
 
  #4. given a string “s”, convert it into lowercase.
 
 def lower_that_string(s):
     s = s.lower()
     return s
-lower_that_string('AnabelA e a anA comem anAnas')
+print(f'Ex4: string original: {s} \nstring in lowercase: {lower_that_string(s)}')
 
  #5. given a string “s”,  convert it into uppercase.
 
 def upper_that_string(s):
     s = s.upper()
     return s
-upper_that_string('AnabelA e a anA comem anAnas')
+
+print(f'Ex5: string original: {s} \nstring in uppercase: {upper_that_string(s)}')
 
  #6. Verifica se uma string é capicua
 
@@ -47,9 +54,13 @@ def capicua(s):
     if inv_s  == s:
         return True
     return False
-capicua('5321235')
+
+print(f'Ex6: A string "{s}" é capicua? {capicua('5321235')}')
 
  #7. Verifica se duas strings estão balanceadas (Duas strings, s1 e s2, estão balanceadas se todos os caracteres de s1 estão presentes em s2.)
+
+s1= 'an'
+s2= 'Ana banana'
 
 def balanceadas(s1, s2):
     s1 = s1.lower()
@@ -58,7 +69,8 @@ def balanceadas(s1, s2):
         if l not in s2:
             return False
     return True
-balanceadas('abc','cab')
+
+print(f'Ex7: As strings "{s1}" e "{s2}" estão balanceadas? {balanceadas(s1,s2)}')
             
  #8. Calcula o número de ocorrências de s1 em s2
 
@@ -67,11 +79,13 @@ def occ(s1, s2):
     s2 = s2.lower()
     return s2.count(s1)
 
-print(occ('listen', 'silent')) 
-print(occ('is', 'This is a test. Is it working?'))  
-print(occ('an', 'Ana banana'))  
+print(f'Ex8: Número de ocorrências de "{s1}" em "{s2}": {occ(s1,s2)}')
 
  #9. Verifica se s1 é anagrama de s2. 
+
+a1='listen'
+a2='silent'
+a3='hello'
 
 def anagrama(s1,s2):
     s1 = s1.lower()
@@ -81,8 +95,8 @@ def anagrama(s1,s2):
         return True
     return False
 
-anagrama('listen','silent')
-anagrama('hello','world')
+print(f'Ex9: "{a1}" é anagrama de "{a2}"? {anagrama(a1,a2)}')
+print(f'Ex9: "{a1}" é anagrama de "{a3}"? {anagrama(a1,a3)}')
 
  #10. Dado um dicionário, calcular a tabela das classes de anagramas.
 
@@ -96,5 +110,5 @@ def tabela_anagramas(L):
     return tabela
 
 L = ["listen", "silent", "enlist", "rat", "tar", "art", "god", "dog"]
-print(tabela_anagramas(L))
+print(f'Ex10: tabela de classes de anagramas: {tabela_anagramas(L)}')
 
