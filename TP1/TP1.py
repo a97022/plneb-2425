@@ -17,26 +17,26 @@ contA('AnabelA e a anA comem anAnas')
 
 def conta_vogais(s):
     s = s.lower()
-    vogais = ['a','e','i','o','u']
+    vogais = 'aeiou'
     c_v=0
     for vogal in vogais:
         if vogal in s:
             c_v= s.count(vogal) + c_v
-    print(f'Dada a string: "{s}", contamos a presença de {c_v} vogais.')
+    return c_v
 conta_vogais('AnabelA e a anA comem anAnas')
 
  #4. given a string “s”, convert it into lowercase.
 
 def lower_that_string(s):
     s = s.lower()
-    print(s)
+    return s
 lower_that_string('AnabelA e a anA comem anAnas')
 
  #5. given a string “s”,  convert it into uppercase.
 
 def upper_that_string(s):
     s = s.upper()
-    print(s)
+    return s
 upper_that_string('AnabelA e a anA comem anAnas')
 
  #6. Verifica se uma string é capicua
@@ -45,23 +45,56 @@ def capicua(s):
     s = s.lower()
     inv_s = reverse_s(s)
     if inv_s  == s:
-        print('é capicua')
         return True
-    else:
-        print('não é capicua')
-        return False
+    return False
 capicua('5321235')
 
  #7. Verifica se duas strings estão balanceadas (Duas strings, s1 e s2, estão balanceadas se todos os caracteres de s1 estão presentes em s2.)
 
-
+def balanceadas(s1, s2):
+    s1 = s1.lower()
+    s2 = s2.lower()
+    for l in s1:
+        if l not in s2:
+            return False
+    return True
+balanceadas('abc','cab')
+            
  #8. Calcula o número de ocorrências de s1 em s2
 
+def occ(s1, s2):
+    s1 = s1.lower()
+    s2 = s2.lower()
+    return s2.count(s1)
+
+print(occ('listen', 'silent')) 
+print(occ('is', 'This is a test. Is it working?'))  
+print(occ('an', 'Ana banana'))  
 
  #9. Verifica se s1 é anagrama de s2. 
 
-#○ "listen" e "silent": Deve imprimir True
-#○ "hello", "world": Deve imprimir False
+def anagrama(s1,s2):
+    s1 = s1.lower()
+    s2 = s2.lower()
+    
+    if sorted(s1) == sorted(s2):
+        return True
+    return False
 
+anagrama('listen','silent')
+anagrama('hello','world')
 
  #10. Dado um dicionário, calcular a tabela das classes de anagramas.
+
+def tabela_anagramas(L):
+    tabela = {}
+    for palavra in L:
+        chave = ''.join(sorted(palavra))
+        if chave not in tabela:
+            tabela [chave] = []
+        tabela[chave].append(palavra)
+    return tabela
+
+L = ["listen", "silent", "enlist", "rat", "tar", "art", "god", "dog"]
+print(tabela_anagramas(L))
+
