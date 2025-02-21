@@ -1,95 +1,71 @@
-#Define regular expressions to match strings that:
+#Exercicios aula0
 
-import re
-s = ['Tartaruga',
-     'Casa',
-     'geografia',
-     'tarantula0',
-     '2024',
-     'Morango',
-     'Melancia',
-     'melancolia',
-     'olaa',
-     'toto',
-     'ToTo',
-     '0.5',
-     'hi',
-     'melão',
-     'Mermão',
-     '345.87']
+#Programa que pergunta ao utilizador o nome e imprime em maiúsculas
+def nome ():
+    nome = input("qual o teu nome? ")
+    print(nome.upper())
 
-#1. have a 't'
+#nome()
 
-def t (s):
-    for word in s:
-        if (re.findall(r't',word)) != []:
-            print(word)
+#Funcao que recebe array de numeros e imprime numeros pares
+array = [1,2,3,4,5,6,7,8,9,10]
+lista=[]
+def pares(array):
+    for i in array:
+        if i%2==0:
+            lista.append(i)
+            i= i+1
+    print (lista)
 
-t(s)
+#pares(array)
 
-#2. have a 't' or a 'T'
+#funcao que recebe nome de ficheiro e imprime linhas do ficheiro em ordem inversa
+file= "C:/Users/maria/Desktop/Universidade/2semestre/PLN/plneb-2425/ola.txt"
+def linhas_inversas(file):
+    file = open(file)
+    line = file.readlines()
+    print(line[::-1])
 
-def t_T (s):
-    for word in s:
-        if (re.findall(r'[tT]',word)) != []:
-            print(word)
+#linhas_inversas(file)
 
-t_T(s)
+#funcao que recebe nome de ficheiro e imprime numero de ocorrencias das 10 palavras mais frequentes no ficheiro
 
-#3. have a letter (and how many)
+def ocorrencias(file): #CORRIGIR
+    dic={}
+    file =open(file)
+    for line in file:
+        words = line.split()
+        for word in words:
+            if word not in dic:
+                occ=1
+                dic[word] = occ
+            else:
+                occ = occ + 1
+                dic[word]= occ
+    print (dic)
 
-def letter_count (s):
-    for word in s:
-        if (re.findall(r'[A-Za-z]',word)) != []:
-            print(word, len(word))
+ocorrencias(file)
 
-letter_count(s)
+from collections import Counter
 
-#4. have a digit
+def ocorrencias(file_path):
+    dic = Counter()  # Usamos Counter() para contar ocorrências de forma eficiente
+    
+    with open(file_path, "r", encoding="utf-8") as f:  # Garantir fecho correto do ficheiro
+        for line in f:
+            palavras = line.split()  # Dividir a linha em palavras
+            dic.update(palavras)  # Atualizar contador com as palavras da linha
+    
+    # Obter as 10 palavras mais frequentes
+    palavras_mais_frequentes = dic.most_common(10)
 
-def digit (s):
-    for word in s:
-        if (re.findall(r'\d',word)) != []:
-            print(word)
+    # Imprimir as palavras mais frequentes e o número de ocorrências
+    for palavra, ocorrencias in palavras_mais_frequentes:
+        print(f"{palavra}: {ocorrencias}")
 
-digit(s)
 
-#5. have a decimal number
 
-def dec (s):
-    for word in s:
-        if (re.findall(r'\d+\.\d+',word)) != []:
-            print(word)
 
-dec(s)
+#Funcao que recebe um texto como argumento e o "limpa": separa palavras e pontuação com espaços, converte para minúsculas, remove acentuação de caracteres, etc
 
-#6. have a lenght higher than 3 characters
-
-def characters (s):
-    for word in s:
-        if (re.findall(r'\w{3,}',word)) != []:
-            print(word)
-
-characters(s)
-
-#7. have an 'M' but not an 'm'
-
-def Mbutnotm (s):
-    for word in s:
-        if (re.findall(r'M',word)) != [] and (re.findall(r'm',word)) == []:
-            print(word)
-
-Mbutnotm(s)
-
-#8. have a character repeated twice
-
-def repeated (s):
-    for word in s:
-        if (re.findall(r'\b\w{2}',word)) != []:
-            print(word)
-
-repeated(s)
-
-#9. have only one character repeated many times
-
-#10. put all words between {}
+#def limpa(file):
