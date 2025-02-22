@@ -8,7 +8,7 @@
 ### 1.2. Encontrar a palavra hello 
 **Descrição:** Dada uma linha de texto, define um programa que determina se a palavra "hello" aparece em qualquer posição da linha.  
 **expressão regular:** re.search(r'hello', s)  
-usa-se o search para encontrar o padrão independentemente da sua localização no texto, ao contrário do match que apenas verifica o início do mesmo
+**comentário:** usa-se o search para encontrar o padrão independentemente da sua localização no texto, ao contrário do match que apenas verifica o início do mesmo
 
 ### 1.3. Hhello
 **Descrição:** Dada uma linha de texto, este é o programa que pesquisa por todas as ocorrências da palavra "hello" dentro da linha, admitindo que a palavra seja escrita com maiúsculas ou minúsculas.  
