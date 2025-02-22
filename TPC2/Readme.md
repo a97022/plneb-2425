@@ -2,12 +2,12 @@
 # TPC2 Exercícios de Expressões Regulares
 
 ### 1.1 Hello no início da linha 
-**Descrição:** Dada uma linha de texto, define um programa que determina se a palavra "hello" aparece no início da linha. 
+**Descrição:** Dada uma linha de texto, define um programa que determina se a palavra "hello" aparece no início da linha.  
 **expressão regular:** re.match(r'^hello', s)
 
 ### 1.2. Encontrar a palavra hello 
-**Descrição:** Dada uma linha de texto, define um programa que determina se a palavra "hello" aparece em qualquer posição da linha.
-**expressão regular:** re.search(r'hello', s)
+**Descrição:** Dada uma linha de texto, define um programa que determina se a palavra "hello" aparece em qualquer posição da linha.  
+**expressão regular:** re.search(r'hello', s)  
 usa-se o search para encontrar o padrão independentemente da sua localização no texto, ao contrário do match que apenas verifica o início do mesmo
 
 ### 1.3. Hhello
