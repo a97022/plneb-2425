@@ -68,8 +68,8 @@ PRONOMES_PESSOAIS = [
 ## 8. Inteiros 
 **Descrição:** Função `inteiros` que devolve todos os números inteiros presentes numa string. Um número inteiro pode conter um ou mais dígitos e pode ser positivo ou negativo.  
 - **Expressão Regular:** re.findall(r'[^0-9a-zA-Z_\.](-?\d+)\b(?!\.)',linha)  
-- **comentário:** Este exercício deu trabalho...a expressão regular para número positivo ou negativo foi fácil de alcançar, '-?\d+'. Contudo, não queria que a expressão validasse números decimais nem números que estivessem na composição de palavras. Por esse motivo, pensei em usar \b para limitar a busca por apenas números isolados mas não foi suficiente.  
-Queria que a função fosse capaz de reconhecer o ponto (.) e não o considerasse, para isso aprendi novos conceitos: negative lookbehind e o negative lookahead. O primeiro verifica se o caractere imediatamente à esquerda do padrão não é, neste caso, o ponto; o negative lookahead garante que após o padrão não aparece, neste caso, um ponto (.).  
+- **comentário:** Este exercício deu trabalho...a expressão regular para número positivo ou negativo foi fácil de alcançar, '-?\d+'.  Contudo, não queria que a expressão validasse números decimais nem números que estivessem na composição de palavras. Por esse motivo, pensei em usar \b para limitar a busca por apenas números isolados mas não foi suficiente.  
+Queria que a função fosse capaz de reconhecer o ponto (.) e não o considerasse, para isso aprendi novos conceitos: **negative lookbehind** e o **negative lookahead**. O primeiro verifica se o caractere imediatamente à esquerda do padrão não é, neste caso, o ponto; o negative lookahead garante que após o padrão não aparece, neste caso, um ponto (.).  
 Estes dois conceitos levaram a minha expressão regular a ser capaz de retornar um output muito satisfatório contra a minha string de teste.
 
 - **input:** inteiros("4,-6,2,3,8,-3,0,2,-5,1,maria,ines,2023,18fevereiro,0.35,leonor_98,xavier43")  
