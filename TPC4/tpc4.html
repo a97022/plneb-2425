@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Aldeia Adormece</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #ffffff;
+            background-image: url('C:/Users/maria/Desktop/Universidade/2semestre/PLN/plneb-2425/TPC4/florest.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .menu-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ffc107;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #000;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background-color: #e0a800;
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 20px;
+            background-color: rgba(255, 193, 7, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu button {
+            display: block;
+            background-color: transparent;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 5px;
+            color: #000;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu button:hover {
+            background-color: rgba(224, 168, 0, 0.8);
+        }
+
+        .section {
+            display: none;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 1000px;
+            transition: opacity 0.5s ease;
+        }
+
+        #home {
+            display: block;
+            padding: 50px;
+            position: relative;
+        }
+
+        #home h1 {
+            font-size: 6em;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+        }
+
+        #home p {
+            font-size: 1.5em;
+            color: white;
+            margin-top: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .carousel {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-item {
+            display: none;
+            position: relative;
+            width: 100%;
+            transition: transform 0.5s ease;
+            text-align: center; /* centra o conteudo*/
+        }
+
+        .carousel-item.active {
+            display: block;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            max-width: 300px; /*  tamanho da imagem da carta */
+            height: auto;
+            margin: 0 auto; /* centra a imagem */
+        }
+
+        .carousel-caption {
+            position: relative; /* posicionamento alternativo em vez de absolute  */
+            bottom: 10px; /* adiciona espaco entre a imagem e legenda */
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .carousel-caption h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .carousel-caption p {
+            margin: 10px 0 0;
+            font-size: 1em;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.5em;
+        }
+
+        .carousel-control-prev {
+            left: 10px;
+        }
+
+        .carousel-control-next {
+            right: 10px;
+        }
+
+        #music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #ffc107;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 1000;
+        }
+
+        #background-music {
+            display: none;
+        }
+
+        /* Estilo da seção Regras */
+        #regras {
+            padding: 40px 20px;
+            /*background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 1000px;
+        }
+
+        .regras-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .regras-header h2 {
+            font-size: 2em;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .regras-header h2 span {
+            color: #ffc107; /* Cor amarela para destacar o título */
+        }
+
+        .regras-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            text-align: center;
+            background-color: rgba(255, 193, 7, 0.2); /* Fundo amarelo claro */
+            padding: 15px;
+            border-radius: 10px;
+            width: 20%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-item .icon {
+            font-size: 30px;
+            color: #ffc107; /* Ícones amarelos */
+        }
+
+        .info-item h6 {
+            font-size: 15px;
+            color: #ffffff;
+            margin-top: 10px;
+        }
+
+        .regras-texto {
+            margin-top: 30px;
+        }
+
+        .texto-item {
+            background-color: rgba(255, 255, 255, 0.1); /* Fundo branco semi-transparente */
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .texto-item p {
+            font-size: 1.1em;
+            color: #ffffff;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            font-weight: normal; /* Garante que o texto não fique em negrito */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Áudio de fundo -->
+    <audio id="background-music" loop>
+        <source src="./\AAA_banda_sonora.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <!-- Botão para ligar/desligar a música -->
+    <button id="music-toggle" onclick="toggleMusic()">Ligar Música</button>
+
+
+    <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
+    <div class="menu" id="menu">
+        <button onclick="showSection('home')">Início</button>
+        <button onclick="showSection('regras')">Regras</button>
+        <button onclick="showSection('personagens')">Personagens</button>
+        <button onclick="showSection('origem')">Origem</button>
+        <button onclick="showSection('about')">About Me</button>
+    </div>
+    
+    <div id="home" class="section">
+        <h1>A Aldeia Adormece</h1>
+        <p>Para que nunca me falte um baralho, aldeãos, lobos e uma boa noite de jogo...</p>
+        <button onclick="baralharCartas()" style="padding: 10px 20px; font-size: 1.2em; background-color: #ffc107; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">Iniciar Jogo</button>
+        <div class="cards-container" id="cards-container"></div>
+    </div>
+    
+    <div id="regras" class="section">
+        <div class="regras-container">
+            <!-- Título e descrição -->
+            <div class="regras-header">
+                <h2>
+                    <span style="font-family: 'Miller Text Italic'; font-style: italic; color: #ffc107;">A Aldeia adormece</span> 
+                    é um jogo de bluff, mistério e suspense, manipulação e persuasão, para toda a família.
+                </h2>
+            </div>
+    
+            <!-- Informações sobre o jogo -->
+            <div class="regras-info">
+                <div class="info-item">
+                    <span class="icon">🎮</span>
+                    <h6>A partir dos<br>10 anos</h6>
+                </div>
+                <div class="info-item">
+                    <span class="icon">👥</span>
+                    <h6>8 a 25<br>jogadores</h6>
+                </div>
+                <div class="info-item">
+                    <span class="icon">⏳</span>
+                    <h6>Acima de<br>30 minutos</h6>
+                </div>
+            </div>
+    
+            <!-- Texto descritivo -->
+            <div class="regras-texto">
+                <div class="texto-item">
+                    <p>Cada jogador tem uma identidade secreta: Lobo ou Aldeão. O objetivo dos Lobos é eliminar os restantes jogadores antes que a sua identidade seja revelada. Os Aldeões têm de descobrir quem são os Lobos, escondidos entre si, e eliminá-los antes que seja tarde demais.</p>
+                </div>
+                <div class="texto-item">
+                    <p>Os turnos de jogo alternam entre a noite (quando a Aldeia está a dormir e os Lobos fazem as suas matanças, entre outros acontecimentos) e o dia (em que, numa discussão, toda a Aldeia procura descobrir quem são os Lobos escondidos entre todos). É aqui que o jogo ganha todo o seu sabor, à medida que surgem entre os participantes as mais variadas discussões, desconﬁanças e argumentos, num animado ambiente à volta da mesa.</p>
+                </div>
+                <div class="texto-item">
+                    <p>Para tornar o jogo ainda mais interessante, alguns Aldeões e Lobos poderão beneﬁciar de poderes especiais: a Vidente, a Bruxa, o Cupido, o Lobo Alfa, o Lobo Judas, a Raposa, entre outros.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="personagens" class="section">
+        <h2>Personagens</h2>
+        <p>Lista de personagens do jogo...</p>
+        <div class="carousel" id="carouselPersonagens">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./images/baralho01.png" alt="Narrador">
+                    <div class="carousel-caption">
+                        <h3>NARRADOR</h3>
+                        <p>O Narrador não joga, mas tem um papel fundamental: ele é maestro e juiz do jogo. Não é obrigatório que esta carta seja atribuída à sorte — se houver um jogador que se voluntarie para ser o Narrador, esta carta não é incluída no jogo.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho02.png" alt="Lobeco">
+                    <div class="carousel-caption">
+                        <h3>LOBO</h3>
+                        <p>O Lobo é o principal antagonista do jogo. Ele tenta eliminar os aldeões durante a noite.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho03.png" alt="Lobeco">
+                    <div class="carousel-caption">
+                        <h3>LOBO</h3>
+                        <p>O Lobo é o principal antagonista do jogo. Ele tenta eliminar os aldeões durante a noite.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho04.png" alt="Lobeco">
+                    <div class="carousel-caption">
+                        <h3>LOBO</h3>
+                        <p>O Lobo é o principal antagonista do jogo. Ele tenta eliminar os aldeões durante a noite.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho05.png" alt="Lobeco">
+                    <div class="carousel-caption">
+                        <h3>LOBO</h3>
+                        <p>O Lobo é o principal antagonista do jogo. Ele tenta eliminar os aldeões durante a noite.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho06.png" alt="Lobeco">
+                    <div class="carousel-caption">
+                        <h3>LOBO</h3>
+                        <p>O Lobo é o principal antagonista do jogo. Ele tenta eliminar os aldeões durante a noite.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho07.png" alt="Lobo Alfa">
+                    <div class="carousel-caption">
+                        <h3>LOBO ALFA</h3>
+                        <p>O Lobo Alfa apenas pode usar o seu poder uma vez por jogo. Todas as noites, ele acorda e devora uma vítima com os outros Lobos. No entanto, se o desejar, ele levanta a mão, depois dos Lobos terem adormecido. Isso signiﬁca que, em vez de morta, a vítima está amaldiçoada. Nesse caso, o Narrador toca no Aldeão amaldiçoado que, imediatamente (e secretamente), se torna um Lobo - o que quer dizer que, a partir desse momento, esse jogador também passa a fazer parte das matanças noturnas dos Lobos (acordando já como Lobo na reunião diurna seguinte). Se o Aldeão amaldiçoado tem um poder noturno - Vidente, Bruxa, Raposa... -, ele acrescenta o seu poder ao papel de Lobo, sendo também acordado pelo Narrador na sua vez.</p>                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho08.png" alt="Lobo Judas">
+                    <div class="carousel-caption">
+                        <h3>LOBO JUDAS</h3>
+                        <p>Todas as noites, ele acorda e devora as suas vítimas com os outros Lobos. No entanto, a seguir, aquando do chamamento do Narrador, ele acorda sozinho e pode matar um Lobo, ou não. O objetivo do Lobo Judas é ser o único sobrevivente da Aldeia. Nesse caso, e só nesse caso, ele vence.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho09.png" alt="Lobo Vermelho">
+                    <div class="carousel-caption">
+                        <h3>LOBO VERMELHO</h3>
+                        <p>O Lobo Vermelho apenas usa o seu poder enquanto nenhum Lobo (natural, convertido ou amaldiçoado) tiver sido morto. Todas as noites, ele acorda e devora uma vítima com os outros Lobos. A seguir, aquando do chamamento do Narrador, ele acorda sozinho e faz outra vítima. O Lobo Vermelho não pode eliminar outro Lobo.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho10.png" alt="Aldeão">
+                    <div class="carousel-caption">
+                        <h3>ALDEÃO</h3>
+                        <p>Padeiro, costureira ou ferrador, utiliza a sua capacidade de análise do comportamento dos outros para identiﬁcar os Lobos e o poder de persuasão para evitar a sua própria execução, como inocente que é.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho11.png" alt="Aldeão">
+                    <div class="carousel-caption">
+                        <h3>ALDEÃO</h3>
+                        <p>Padeiro, costureira ou ferrador, utiliza a sua capacidade de análise do comportamento dos outros para identiﬁcar os Lobos e o poder de persuasão para evitar a sua própria execução, como inocente que é.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho12.png" alt="Aldeão">
+                    <div class="carousel-caption">
+                        <h3>ALDEÃO</h3>
+                        <p>Padeiro, costureira ou ferrador, utiliza a sua capacidade de análise do comportamento dos outros para identiﬁcar os Lobos e o poder de persuasão para evitar a sua própria execução, como inocente que é.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho13.png" alt="Aldeão">
+                    <div class="carousel-caption">
+                        <h3>ALDEÃO</h3>
+                        <p>Padeiro, costureira ou ferrador, utiliza a sua capacidade de análise do comportamento dos outros para identiﬁcar os Lobos e o poder de persuasão para evitar a sua própria execução, como inocente que é.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho14.png" alt="Aldeão">
+                    <div class="carousel-caption">
+                        <h3>ALDEÃO</h3>
+                        <p>Padeiro, costureira ou ferrador, utiliza a sua capacidade de análise do comportamento dos outros para identiﬁcar os Lobos e o poder de persuasão para evitar a sua própria execução, como inocente que é.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho15.png" alt="Aldeão">
+                    <div class="carousel-caption">
+                        <h3>ALDEÃO</h3>
+                        <p>Padeiro, costureira ou ferrador, utiliza a sua capacidade de análise do comportamento dos outros para identiﬁcar os Lobos e o poder de persuasão para evitar a sua própria execução, como inocente que é.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho16.png" alt="Aldeão">
+                    <div class="carousel-caption">
+                        <h3>ALDEÃO</h3>
+                        <p>Padeiro, costureira ou ferrador, utiliza a sua capacidade de análise do comportamento dos outros para identiﬁcar os Lobos e o poder de persuasão para evitar a sua própria execução, como inocente que é.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho17.png" alt="Aldeão">
+                    <div class="carousel-caption">
+                        <h3>ALDEÃO</h3>
+                        <p>Padeiro, costureira ou ferrador, utiliza a sua capacidade de análise do comportamento dos outros para identiﬁcar os Lobos e o poder de persuasão para evitar a sua própria execução, como inocente que é.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho18.png" alt="Aldeão">
+                    <div class="carousel-caption">
+                        <h3>ALDEÃO</h3>
+                        <p>Padeiro, costureira ou ferrador, utiliza a sua capacidade de análise do comportamento dos outros para identiﬁcar os Lobos e o poder de persuasão para evitar a sua própria execução, como inocente que é.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho19.png" alt="Aldeão">
+                    <div class="carousel-caption">
+                        <h3>ALDEÃO</h3>
+                        <p>Padeiro, costureira ou ferrador, utiliza a sua capacidade de análise do comportamento dos outros para identiﬁcar os Lobos e o poder de persuasão para evitar a sua própria execução, como inocente que é.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho20.png" alt="Vidente">
+                    <div class="carousel-caption">
+                        <h3>VIDENTE</h3>
+                        <p>Em cada noite, a Vidente conhece a identidade de um jogador, sabendo se é Lobo ou Aldeão. Deste modo, dispõe de importantes informações para ajudar a Aldeia.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho21.png" alt="Bêbado">
+                    <div class="carousel-caption">
+                        <h3>BÊBADO</h3>
+                        <p>O objectivo do Bêbado é o de, durante a discussão diurna da primeira ronda, tentar persuadir os outros jogadores de que é Lobo. Se for o elemento mais votado dessa ronda, então o jogo acaba e o Bêbado é o vencedor; se não, o jogo continua e nas rondas que se seguem a personagem funciona como um Aldeão.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho22.png" alt="Bruxa">
+                    <div class="carousel-caption">
+                        <h3>BRUXA</h3>
+                        <p>A Bruxa tem o conhecimento para preparar duas poções: a poção curativa permite ressuscitar o Aldeão morto pelos Lobos nessa noite; a poção venenosa é usada para eliminar um jogador. A Bruxa pode usar cada poção uma só vez durante a partida, podendo usar ambas na mesma noite. A Bruxa pode usar a poção curativa sobre si mesma.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho23.png" alt="Caçador">
+                    <div class="carousel-caption">
+                        <h3>CAÇADOR</h3>
+                        <p>Seja morto durante a noite, de dia, ou morto de desgosto devido à morte do seu Apaixonado, o Caçador replica a sua morte antes de morrer, eliminando imediatamente qualquer outro jogador à sua escolha, sem que haja discussão ou rondas de defesa.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho24.png" alt="Careto">
+                    <div class="carousel-caption">
+                        <h3>CARETO</h3>
+                        <p>O Careto pode, apenas numa das noites, trocar duas cartas em jogo (podendo trocar a sua). Quando o Careto est&aacute; em jogo, todas as manh&atilde;s os jogadores dever&atilde;o conﬁrmar a sua identidade. Se houver alguma troca, o poder dessa personagem &eacute; renovado.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho25.png" alt="Cupido">
+                    <div class="carousel-caption">
+                        <h3>CUPIDO</h3>
+                        <p>Com as suas ﬂechas m&aacute;gicas, o Cupido tem o poder de tornar duas pessoas apaixonadas. Na primeira noite, ele designa os dois jogadores Apaixonados (podendo escolher-se a si pr&oacute;prio, se o entender). Se um dos Apaixonados &eacute; eliminado, o outro morre de desgosto imediatamente. Um Apaixonado pode votar no seu amado, mas est&aacute; consciente da sua pr&oacute;pria senten&ccedil;a caso ele seja o mais votado.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho26.png" alt="Herdeira">
+                    <div class="carousel-caption">
+                        <h3>HERDEIRA</h3>
+                        <p>Imediatamente antes do Narrador mostrar a carta do jogador que foi morto pela Aldeia ap&oacute;s a discuss&atilde;o, a Herdeira pode revelar-se, mostrando a sua carta. Nesse caso, o jogador perde a sua carta e passa a ser, at&eacute; ao ﬁnal do jogo (ou at&eacute; que algum poder o converta noutra personagem), a personagem que ia ser eliminada pela Aldeia. Com isto, o Narrador tem de dar a informa&ccedil;&atilde;o que essa personagem tinha at&eacute; ent&atilde;o.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho27.png" alt="Inquisidor">
+                    <div class="carousel-caption">
+                        <h3>INQUISIDOR</h3>
+                        <p>O Inquisidor tem o dif&iacute;cil poder de, se o desejar, escolher duas pessoas para acusar como Lobos. Se acertar em ambos, a Aldeia acorda de manh&atilde; sabendo que venceu o jogo juntamente com o Inquisidor. Se falhar ou se s&oacute; acertar num suspeito, o Inquisidor morre instantaneamente. Logicamente, apenas poder&aacute; usar o seu poder uma vez por jogo, n&atilde;o sendo obrigado a us&aacute;-lo.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho28.png" alt="Javali">
+                    <div class="carousel-caption">
+                        <h3>JAVALI</h3>
+                        <p>De manh&atilde;, logo depois de ser(em) comunicada(s) a(s) v&iacute;tima(s) nocturna(s), se j&aacute; for ou se um Lobo se tiver tornado vizinho do Javali, o Narrador anuncia &ldquo;O Javali fareja o perigo!&rdquo;.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho29.png" alt="Ladrão">
+                    <div class="carousel-caption">
+                        <h3>LADRÃO</h3>
+                        <p>Depois do Narrador baralhar e distribuir as cartas pelos jogadores, as duas que sobram s&atilde;o colocadas sobre a mesa, de face para baixo. Na primeira noite, o Ladr&atilde;o tem conhecimento dessas cartas e pode, se o entender, trocar a sua carta por uma delas &agrave; sua escolha. Se essas cartas representarem dois Lobos, o Ladr&atilde;o &eacute; obrigado a trocar a sua carta por uma das cartas Lobo. Doravante, o Ladr&atilde;o assume a nova personagem at&eacute; ao ﬁnal do jogo (ou at&eacute; que algum poder o converta noutra personagem). Conhecendo as duas cartas que ﬁcaram de parte, goza de mais informa&ccedil;&otilde;es que os restantes jogadores.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho30.png" alt="Médium">
+                    <div class="carousel-caption">
+                        <h3>MÉDIUM</h3>
+                        <p>Em cada noite, o Médium comunica com a alma penada do jogador que foi morto no dia anterior. Esse jogador (Lobo ou Alde&atilde;o) &quot;fala&quot; com o M&eacute;dium, &uacute;nica e exclusivamente, atrav&eacute;s de uma letra (desenhando-a no ar).</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho31.png" alt="Menina">
+                    <div class="carousel-caption">
+                        <h3>MENINA</h3>
+                        <p>Doce e ing&eacute;nua, a Menina pode (n&atilde;o &eacute; obrigada a faz&ecirc;-lo), entreabrindo os olhos, espiar os Lobos durante a noite. Se for apanhada pelos Lobos, morre imediatamente (em sil&ecirc;ncio), em vez do jogador escolhido pelos Lobos. A Menina s&oacute; pode espiar &agrave; noite, no momento em que os Lobos est&atilde;o acordados (seja na ca&ccedil;ada pela alcateia ou pelos Lobo Judas ou Lobo Vermelho a solo). N&atilde;o pode ﬁngir que &eacute; um Lobo abrindo francamente os olhos.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho32.png" alt="Menino Selvagem">
+                    <div class="carousel-caption">
+                        <h3>MENINO SELVAGEM</h3>
+                        <p>O Menino Selvagem &eacute; um Alde&atilde;o. Na primeira noite, aquando do chamamento do Narrador, o Menino Selvagem escolhe, secretamente, um Modelo. Se durante o jogo o Modelo for morto, o Menino, revoltado com a sociedade, torna-se num Lobo e acorda na noite seguinte para matar com os restantes Lobos, continuando assim at&eacute; ao ﬁnal do jogo. No entanto, enquanto o seu Modelo se mantiver vivo, o Menino continua um Alde&atilde;o, independentemente se o Modelo &eacute; Alde&atilde;o ou Lobo. O Menino n&atilde;o pode votar no seu Modelo para ser eliminado durante a reuni&atilde;o da Aldeia.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho33.png" alt="Polícia">
+                    <div class="carousel-caption">
+                        <h3>POLÍCIA</h3>
+                        <p>Aquando do chamamento do Narrador, ele tem o poder de prender &ndash; o jogador que for preso n&atilde;o pode votar nem comunicar de nenhuma forma no debate do dia seguinte &ndash; e/ou de dar imunidade &ndash; o jogador imune n&atilde;o pode ser votado para morrer no dia seguinte. &Agrave; semelhan&ccedil;a da Bruxa, o Pol&iacute;cia deve usar cada um dos poderes uma s&oacute; vez durante a partida, podendo usar ambos na mesma noite. O Pol&iacute;cia pode usar qualquer um dos poderes sobre si mesmo.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho34.png" alt="Raposa">
+                    <div class="carousel-caption">
+                        <h3>RAPOSA</h3>
+                        <p>A Raposa escolhe um grupo de tr&ecirc;s pessoas vizinhas, apontando para a pessoa do centro (podendo apontar para si pr&oacute;pria). Se nesse trio houver, pelo menos, um Lobo, o Narrador faz um sinal positivo com o polegar. Nesse caso, a Raposa pode voltar a usar o seu poder na noite seguinte. Se n&atilde;o houver nenhum Lobo nesse grupo, ela perde o seu poder e passa a ser um Alde&atilde;o. No entanto, j&aacute; disp&otilde;e de importantes informa&ccedil;&otilde;es para ajudar a Aldeia.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho35.png" alt="Ratazana">
+                    <div class="carousel-caption">
+                        <h3>RATAZANA</h3>
+                        <p>Apenas se for eliminada durante a noite, a Ratazana morre, mas o primeiro Lobo &agrave; sua esquerda ﬁca infectado, devido &agrave;s dentadas que levou na luta travada. Isto quer dizer que esse Lobo ser&aacute; eliminado na noite seguinte (n&atilde;o podendo participar na matan&ccedil;a dessa noite). Esta elimina&ccedil;&atilde;o ser&aacute; revelada na parte da manh&atilde; pelo Narrador ap&oacute;s o desaparecimento do Lobo que, assim, ter&aacute; sobrevivido durante um dia inteiro.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/baralho36.png" alt="Insígnia">
+                    <div class="carousel-caption">
+                        <h3>INSÍGNIA</h3>
+                        <p>A Ins&iacute;gnia &eacute; um sinal distintivo &ndash; o voto do jogador que a possuir vale por dois, sendo tamb&eacute;m ele que decide o jogador a eliminar, em caso de empate. Esta &eacute; conﬁada a um dos jogadores, em complemento &agrave; sua carta de personagem, que dever&aacute; aceit&aacute;-la (n&atilde;o &eacute; poss&iacute;vel recusar a honra de a receber) e ostent&aacute;-la orgulhosamente perante todos. A Ins&iacute;gnia &eacute; atribu&iacute;da por voto (maioria relativa). Se for eliminado, o jogador que possuir a Ins&iacute;gnia nomeia, solenemente, o seu sucessor.</p>
+                    </div>
+                </div>
+                <!-- Adicione mais itens do carousel aqui -->
+            </div>
+            <button class="carousel-control-prev" onclick="prevSlide()">&#10094;</button>
+            <button class="carousel-control-next" onclick="nextSlide()">&#10095;</button>
+        </div>
+    </div>
+    
+    <div id="origem" class="section">
+        <h2>Origem do Jogo</h2>
+        <p>A história por trás do jogo...</p>
+    </div>
+    
+    <div id="about" class="section">
+        <h2>Sobre Mim</h2>
+        <p>Informações sobre o criador do site.</p>
+    </div>
+    
+    <script>
+        function toggleMenu() {
+            let menu = document.getElementById('menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+        
+        function showSection(sectionId) {
+            let sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+            document.getElementById('menu').style.display = 'none';
+        }
+        
+        function baralharCartas() {
+            let container = document.getElementById("cards-container");
+            container.innerHTML = "";
+            let cartas = ["Lobo", "Vidente", "Aldeão", "Caçador", "Bruxa", "Cupido"];
+            cartas = cartas.sort(() => Math.random() - 0.5);
+            
+            cartas.forEach((carta, index) => {
+                let div = document.createElement("div");
+                div.className = "card";
+                
+                let back = document.createElement("div");
+                back.className = "back";
+                back.innerText = "?";
+                
+                let front = document.createElement("div");
+                front.className = "front";
+                front.innerText = carta;
+                
+                div.appendChild(back);
+                div.appendChild(front);
+                container.appendChild(div);
+                
+                setTimeout(() => {
+                    div.classList.add("flipped");
+                }, index * 500);
+            });
+        }
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Função para ligar/desligar a música
+        const audio = document.getElementById('background-music');
+        const musicToggle = document.getElementById('music-toggle');
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                musicToggle.textContent = 'Desligar Música';
+            } else {
+                audio.pause();
+                musicToggle.textContent = 'Ligar Música';
+            }
+        }
+
+        // Inicia a música após a primeira interação do usuário
+        document.body.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                musicToggle.textContent = 'Desligar Música';
+            }
+        }, { once: true });
+
+    </script>
+</body>
+</html>

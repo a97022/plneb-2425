@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Aldeia Adormece</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #ffffff;
+            background-image: url('C:/Users/maria/Desktop/Universidade/2semestre/PLN/plneb-2425/TPC4/florest.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .menu-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ffc107;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #000;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background-color: #e0a800;
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 20px;
+            background-color: rgba(255, 193, 7, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu button {
+            display: block;
+            background-color: transparent;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 5px;
+            color: #000;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu button:hover {
+            background-color: rgba(224, 168, 0, 0.8);
+        }
+
+        .section {
+            display: none;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 1000px;
+            transition: opacity 0.5s ease;
+        }
+
+        #home {
+            display: block;
+            padding: 50px;
+            position: relative;
+        }
+
+        #home h1 {
+            font-size: 6em;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+        }
+
+        #home p {
+            font-size: 1.5em;
+            color: white;
+            margin-top: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 100px;
+            height: 150px;
+            background-color: white;
+            border: 2px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card .front, .card .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .card .back {
+            background-color: rgb(11, 6, 67);
+            color: white;
+        }
+
+        .card .front {
+            background-color: white;
+            transform: rotateY(180deg);
+        }
+
+        .flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilo da seção Regras */
+        #regras {
+            padding: 40px 20px;
+            /*background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 1000px;
+        }
+
+        .regras-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .regras-header h2 {
+            font-size: 2em;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .regras-header h2 span {
+            color: #ffc107; /* Cor amarela para destacar o título */
+        }
+
+        .regras-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            text-align: center;
+            background-color: rgba(255, 193, 7, 0.2); /* Fundo amarelo claro */
+            padding: 15px;
+            border-radius: 10px;
+            width: 20%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-item .icon {
+            font-size: 30px;
+            color: #ffc107; /* Ícones amarelos */
+        }
+
+        .info-item h6 {
+            font-size: 15px;
+            color: #ffffff;
+            margin-top: 10px;
+        }
+
+        .regras-texto {
+            margin-top: 30px;
+        }
+
+        .texto-item {
+            background-color: rgba(255, 255, 255, 0.1); /* Fundo branco semi-transparente */
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .texto-item p {
+            font-size: 1.1em;
+            color: #ffffff;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            font-weight: normal; /* Garante que o texto não fique em negrito */
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
+    <div class="menu" id="menu">
+        <button onclick="showSection('home')">Início</button>
+        <button onclick="showSection('regras')">Regras</button>
+        <button onclick="showSection('personagens')">Personagens</button>
+        <button onclick="showSection('origem')">Origem</button>
+        <button onclick="showSection('about')">About Me</button>
+    </div>
+    
+    <div id="home" class="section">
+        <h1>A Aldeia Adormece</h1>
+        <p>Para que nunca me falte um baralho, aldeãos, lobos e uma boa noite de jogo...</p>
+        <button onclick="baralharCartas()" style="padding: 10px 20px; font-size: 1.2em; background-color: #ffc107; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">Iniciar Jogo</button>
+        <div class="cards-container" id="cards-container"></div>
+    </div>
+    
+    <div id="regras" class="section">
+        <div class="regras-container">
+            <!-- Título e descrição -->
+            <div class="regras-header">
+                <h2>
+                    <span style="font-family: 'Miller Text Italic'; font-style: italic; color: #ffc107;">A Aldeia adormece</span> 
+                    é um jogo de bluff, mistério e suspense, manipulação e persuasão, para toda a família.
+                </h2>
+            </div>
+    
+            <!-- Informações sobre o jogo -->
+            <div class="regras-info">
+                <div class="info-item">
+                    <span class="icon">🎮</span>
+                    <h6>A partir dos<br>10 anos</h6>
+                </div>
+                <div class="info-item">
+                    <span class="icon">👥</span>
+                    <h6>8 a 25<br>jogadores</h6>
+                </div>
+                <div class="info-item">
+                    <span class="icon">⏳</span>
+                    <h6>Acima de<br>30 minutos</h6>
+                </div>
+            </div>
+    
+            <!-- Texto descritivo -->
+            <div class="regras-texto">
+                <div class="texto-item">
+                    <p>Cada jogador tem uma identidade secreta: Lobo ou Aldeão. O objetivo dos Lobos é eliminar os restantes jogadores antes que a sua identidade seja revelada. Os Aldeões têm de descobrir quem são os Lobos, escondidos entre si, e eliminá-los antes que seja tarde demais.</p>
+                </div>
+                <div class="texto-item">
+                    <p>Os turnos de jogo alternam entre a noite (quando a Aldeia está a dormir e os Lobos fazem as suas matanças, entre outros acontecimentos) e o dia (em que, numa discussão, toda a Aldeia procura descobrir quem são os Lobos escondidos entre todos). É aqui que o jogo ganha todo o seu sabor, à medida que surgem entre os participantes as mais variadas discussões, desconﬁanças e argumentos, num animado ambiente à volta da mesa.</p>
+                </div>
+                <div class="texto-item">
+                    <p>Para tornar o jogo ainda mais interessante, alguns Aldeões e Lobos poderão beneﬁciar de poderes especiais: a Vidente, a Bruxa, o Cupido, o Lobo Alfa, o Lobo Judas, a Raposa, entre outros.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    <div id="personagens" class="section">
+        <h2>Personagens</h2>
+        <p>Lista de personagens do jogo...</p>
+        <div class="accordion_content img-bg3 color-bg line_bottom">
+            <div class="container accordion-padding">
+            <div class="col-lg-8">
+            <div class="cabecalhos">
+            <h2>S&atilde;o 23 personagens com ilustra&ccedil;&otilde;es &uacute;nicas e originais de 23 ilustradores diferentes, distribu&iacute;das por 35 cartas<br />
+            e 1 Ins&iacute;gnia.</h2>
+            </div>
+            </div>
+            
+            <div style="position: relative; text-align: center">
+            <div class="carousel" data-interval="false" data-ride="carousel" id="aaa_cartas">
+            <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active"><img class="img-fluid" src="plneb-2425/TPC4/images/baralho01.png" />
+            <div class="carousel-caption">
+            <div class="poder-personagens">
+            <h1>Comanda e modera o jogo</h1>
+            </div>
+            
+            <div class="row">
+            <div class="col-lg-6">
+            <h3>NARRADOR</h3>
+            
+            <p style="text-align: left;">O Narrador n&atilde;o joga, mas tem um papel fundamental: ele &eacute; maestro e ju&iacute;z do jogo. N&atilde;o &eacute; obrigat&oacute;rio que esta carta seja atribu&iacute;da em sorte &mdash; se houver um jogador que se voluntarie para ser o Narrador, esta carta n&atilde;o &eacute; inclu&iacute;da no jogo.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="origem" class="section">
+        <h2>Origem do Jogo</h2>
+        <p>A história por trás do jogo...</p>
+    </div>
+    
+    <div id="about" class="section">
+        <h2>Sobre Mim</h2>
+        <p>Informações sobre o criador do site.</p>
+    </div>
+    
+    <script>
+        function toggleMenu() {
+            let menu = document.getElementById('menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+        
+        function showSection(sectionId) {
+            let sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+            document.getElementById('menu').style.display = 'none';
+        }
+        
+        function baralharCartas() {
+            let container = document.getElementById("cards-container");
+            container.innerHTML = "";
+            let cartas = ["Lobo", "Vidente", "Aldeão", "Caçador", "Bruxa", "Cupido"];
+            cartas = cartas.sort(() => Math.random() - 0.5);
+            
+            cartas.forEach((carta, index) => {
+                let div = document.createElement("div");
+                div.className = "card";
+                
+                let back = document.createElement("div");
+                back.className = "back";
+                back.innerText = "?";
+                
+                let front = document.createElement("div");
+                front.className = "front";
+                front.innerText = carta;
+                
+                div.appendChild(back);
+                div.appendChild(front);
+                container.appendChild(div);
+                
+                setTimeout(() => {
+                    div.classList.add("flipped");
+                }, index * 500);
+            });
+        }
+    </script>
+</body>
+</html>
