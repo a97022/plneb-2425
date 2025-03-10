@@ -458,6 +458,190 @@
             }
         }
 
+        /* Estilo do botão de iniciar */
+        .btn-iniciar {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #ffc107;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-iniciar:hover {
+            background-color: #e0a800;
+        }
+
+        /* Configuração do jogo */
+        .configuracao {
+            margin-top: 20px;
+        }
+
+        .configuracao label {
+            font-size: 1.1em;
+            color: #ffffff;
+            margin-right: 10px;
+        }
+
+        .configuracao input {
+            padding: 5px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .lista-personagens {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .lista-personagens label {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .lista-personagens label:hover {
+            background-color: rgba(255, 193, 7, 0.3);
+        }
+
+        .btn-confirmar {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-confirmar:hover {
+            background-color: #218838;
+        }
+
+        /* Animação de baralhar cartas */
+        .animacao-baralhar {
+            margin-top: 20px;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 100px;
+            height: 150px;
+            background-color: white;
+            border: 2px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .card .front, .card .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .card .back {
+            background-color: rgb(11, 6, 67);
+            color: white;
+        }
+
+        .card .front {
+            background-color: white;
+            transform: rotateY(180deg);
+        }
+
+        .flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* Modo de Jogo */
+        .modo-jogo {
+            margin-top: 20px;
+        }
+
+        .narracao {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .narracao p {
+            font-size: 1.2em;
+            color: #ffffff;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .botoes-jogo {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-noite, .btn-dia, .btn-fim {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-noite {
+            background-color: #343a40;
+            color: white;
+        }
+
+        .btn-noite:hover {
+            background-color: #23272b;
+        }
+
+        .btn-dia {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .btn-dia:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-fim {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-fim:hover {
+            background-color: #c82333;
+        }
+
     </style>
 </head>
 <body>
@@ -484,8 +668,42 @@
     <div id="home" class="section">
         <h1>A Aldeia Adormece</h1>
         <p>Para que nunca me falte um baralho, aldeãos, lobos e um bom jogo...</p>
-        <button onclick="baralharCartas()" style="padding: 10px 20px; font-size: 1.2em; background-color: #ffc107; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">Iniciar Jogo</button>
-        <div class="cards-container" id="cards-container"></div>
+        
+        <!-- Botão para iniciar o jogo -->
+        <button onclick="iniciarConfiguracao()" class="btn-iniciar">Iniciar Jogo</button>
+    
+        <!-- Configuração do jogo -->
+        <div id="configuracao" class="configuracao" style="display: none;">
+            <h2>Configuração do Jogo</h2>
+            <label for="numJogadores">Número de Jogadores:</label>
+            <input type="number" id="numJogadores" min="5" max="25" value="5">
+            
+            <h3>Selecione os Personagens:</h3>
+            <div id="listaPersonagens" class="lista-personagens">
+                <!-- Personagens serão adicionados dinamicamente -->
+            </div>
+            
+            <button onclick="iniciarJogo()" class="btn-confirmar">Confirmar e Baralhar Cartas</button>
+        </div>
+    
+        <!-- Animação de baralhar cartas -->
+        <div id="animacaoBaralhar" class="animacao-baralhar" style="display: none;">
+            <h2>Baralhando Cartas...</h2>
+            <div class="cards-container" id="cards-container"></div>
+        </div>
+    
+        <!-- Modo de Jogo -->
+        <div id="modoJogo" class="modo-jogo" style="display: none;">
+            <h2>Modo de Jogo</h2>
+            <div id="narracao" class="narracao">
+                <p id="textoNarracao">Bem-vindos à Aldeia! A noite cai, e todos adormecem...</p>
+            </div>
+            <div class="botoes-jogo">
+                <button onclick="alternarModo('noite')" class="btn-noite">Noite</button>
+                <button onclick="alternarModo('dia')" class="btn-dia">Dia</button>
+                <button onclick="finalizarJogo()" class="btn-fim">Fim de Jogo</button>
+            </div>
+        </div>
     </div>
     
     <div id="regras" class="section">
@@ -868,32 +1086,107 @@
             document.getElementById('menu').style.display = 'none';
         }
         
+        // Lista de personagens disponíveis
+        const personagens = [
+            "Lobo", "Vidente", "Aldeão", "Caçador", "Bruxa", "Cupido", "Lobo Alfa", "Lobo Judas", "Lobo Vermelho", "Raposa", "Bêbado", "Careto", "Herdeira", "Inquisidor", "Javali", "Ladrão", "Médium", "Menina", "Menino Selvagem", "Polícia", "Ratazana"
+        ];
+
+        // Variáveis globais
+        let cartasBaralhadas = [];
+        let jogadores = [];
+        let modoAtual = "noite";
+
+        // Iniciar configuração do jogo
+        function iniciarConfiguracao() {
+            document.getElementById('configuracao').style.display = 'block';
+            document.querySelector('.btn-iniciar').style.display = 'none';
+
+            // Adicionar personagens à lista
+            const listaPersonagens = document.getElementById('listaPersonagens');
+            listaPersonagens.innerHTML = personagens.map(personagem => `
+                <label>
+                    <input type="checkbox" name="personagem" value="${personagem}" checked> ${personagem}
+                </label>
+            `).join('');
+        }
+
+        // Iniciar o jogo após a configuração
+        function iniciarJogo() {
+            const numJogadores = parseInt(document.getElementById('numJogadores').value);
+            const personagensSelecionados = Array.from(document.querySelectorAll('input[name="personagem"]:checked')).map(input => input.value);
+
+            if (personagensSelecionados.length < numJogadores) {
+                alert("Selecione personagens suficientes para todos os jogadores!");
+                return;
+            }
+
+            // Baralhar cartas
+            cartasBaralhadas = personagensSelecionados.sort(() => Math.random() - 0.5).slice(0, numJogadores);
+            jogadores = cartasBaralhadas.map((carta, index) => ({ id: index + 1, carta }));
+
+            // Mostrar animação de baralhar
+            document.getElementById('configuracao').style.display = 'none';
+            document.getElementById('animacaoBaralhar').style.display = 'block';
+            baralharCartas();
+        }
+
+        // Baralhar e distribuir cartas
         function baralharCartas() {
-            let container = document.getElementById("cards-container");
+            const container = document.getElementById('cards-container');
             container.innerHTML = "";
-            let cartas = ["Lobo", "Vidente", "Aldeão", "Caçador", "Bruxa", "Cupido"];
-            cartas = cartas.sort(() => Math.random() - 0.5);
-            
-            cartas.forEach((carta, index) => {
-                let div = document.createElement("div");
-                div.className = "card";
-                
-                let back = document.createElement("div");
-                back.className = "back";
+
+            cartasBaralhadas.forEach((carta, index) => {
+                const div = document.createElement('div');
+                div.className = 'card';
+
+                const back = document.createElement('div');
+                back.className = 'back';
                 back.innerText = "?";
-                
-                let front = document.createElement("div");
-                front.className = "front";
+
+                const front = document.createElement('div');
+                front.className = 'front';
                 front.innerText = carta;
-                
+
                 div.appendChild(back);
                 div.appendChild(front);
                 container.appendChild(div);
-                
+
                 setTimeout(() => {
-                    div.classList.add("flipped");
+                    div.classList.add('flipped');
                 }, index * 500);
             });
+
+            // Iniciar modo de jogo após a animação
+            setTimeout(() => {
+                document.getElementById('animacaoBaralhar').style.display = 'none';
+                document.getElementById('modoJogo').style.display = 'block';
+                atualizarNarracao("Bem-vindos à Aldeia! A noite cai, e todos adormecem...");
+            }, cartasBaralhadas.length * 500 + 1000);
+        }
+
+        // Alternar entre dia e noite
+        function alternarModo(modo) {
+            modoAtual = modo;
+            if (modo === "noite") {
+                atualizarNarracao("A noite cai. Lobos, acordem e escolham sua vítima...");
+            } else {
+                atualizarNarracao("O dia amanhece. Aldeões, discutam e decidam quem eliminar...");
+            }
+        }
+
+        // Atualizar narração
+        function atualizarNarracao(texto) {
+            document.getElementById('textoNarracao').innerText = texto;
+        }
+
+        // Finalizar o jogo
+        function finalizarJogo() {
+            if (confirm("Tem certeza de que deseja finalizar o jogo?")) {
+                atualizarNarracao("O jogo terminou. Obrigado por jogar!");
+                setTimeout(() => {
+                    location.reload(); // Recarregar a página para reiniciar
+                }, 3000);
+            }
         }
 
         let currentSlide = 0;
@@ -943,3 +1236,8 @@
     </script>
 </body>
 </html>
+
+
+
+
+

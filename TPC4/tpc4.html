@@ -73,24 +73,58 @@
             transition: opacity 0.5s ease;
         }
 
+        /* Estilo da seção Home */
         #home {
-            display: block;
-            padding: 50px;
-            position: relative;
+            padding: 60px 20px;
+            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 1200px;
+            text-align: center;
         }
 
-        #home h1 {
-            font-size: 6em;
-            color: white;
+        .home-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Título principal */
+        .home-title {
+            font-size: 4em;
+            color: #ffffff; 
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
-        #home p {
+        /* Subtítulo */
+        .home-subtitle {
             font-size: 1.5em;
-            color: white;
-            margin-top: 10px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+        }
+
+        /* Texto narrativo */
+        .home-narrativa {
+            background-color: rgba(255, 255, 255, 0.1); /* Fundo branco semi-transparente */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .narrativa-texto {
+            font-size: 1.2em;
+            color: #ffffff;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            margin-bottom: 15px;
+        }
+
+        .narrativa-texto span {
+            font-family: 'Miller Text Italic', serif;
+            font-style: italic;
+            color: #ffffff; 
         }
 
         .carousel {
@@ -131,7 +165,7 @@
             padding: 10px;
             border-radius: 5px;
             width: 80%;
-            max-width: 600px;
+            max-width: 1200px;
         }
 
         .carousel-caption h3 {
@@ -189,7 +223,7 @@
             /*background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
             border-radius: 10px;
             margin: 20px auto;
-            max-width: 1000px;
+            max-width: 1200px;
         }
 
         .regras-container {
@@ -255,6 +289,154 @@
             font-weight: normal; /* Garante que o texto não fique em negrito */
         }
 
+        /* Estilo da seção Origem */
+        #origem {
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .origem-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .origem-header h2 {
+            font-size: 2em;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .origem-header h2 span {
+            color: #ffc107; /* Cor amarela para destacar o título */
+        }
+
+        .origem-texto {
+            margin-top: 20px;
+        }
+
+        .texto-item {
+            background-color: rgba(255, 255, 255, 0.1); /* Fundo branco semi-transparente */
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .texto-item p {
+            font-size: 1.1em;
+            color: #ffffff;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            font-weight: normal; /* Garante que o texto não fique em negrito */
+        }
+
+        .texto-item p span {
+            font-family: 'Miller Text Italic', serif;
+            font-style: italic;
+            color: #ffc107; /* Cor amarela para trechos em itálico */
+        }
+
+        /* Estilo da seção About Me */
+        #about {
+            padding: 60px 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .about-header {
+            text-align: center;
+        }
+
+        .about-header h2 {
+            font-size: 2.5em;
+            color: #ffc107;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .about-header p {
+            font-size: 1.2em;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-photo {
+            flex: 1;
+            max-width: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .about-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text {
+            flex: 2;
+        }
+
+        .about-text p {
+            font-size: 1.1em;
+            color: #ffffff;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .about-text strong {
+            color: #ffc107;
+        }
+
+        /* Animação de flutuação */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-photo {
+                max-width: 200px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -267,7 +449,7 @@
 
     <!-- Botão para ligar/desligar a música -->
     <button id="music-toggle" onclick="toggleMusic()">Ligar Música</button>
-
+       
 
     <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
     <div class="menu" id="menu">
@@ -279,10 +461,36 @@
     </div>
     
     <div id="home" class="section">
-        <h1>A Aldeia Adormece</h1>
-        <p>Para que nunca me falte um baralho, aldeãos, lobos e uma boa noite de jogo...</p>
-        <button onclick="baralharCartas()" style="padding: 10px 20px; font-size: 1.2em; background-color: #ffc107; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">Iniciar Jogo</button>
-        <div class="cards-container" id="cards-container"></div>
+        <div class="home-container">
+            <!-- Título principal -->
+            <h1 class="home-title">A Aldeia Adormece</h1>
+            
+            <!-- Subtítulo -->
+            <p class="home-subtitle">
+                <span style="font-family: 'Miller Text Italic'; font-style: normal; color: #ffc107;">
+                    Para que nunca me falte um baralho, aldeãos, lobos e um bom jogo...
+                </span>
+            </p>
+    
+            <!-- Texto narrativo -->
+            <div class="home-narrativa">
+                <p class="narrativa-texto">
+                    <span style="font-family: 'Miller Text Italic'; font-style: italic;">
+                        "Estamos no ano de 1911. O terror reina entre os habitantes da Aldeia do Talasnal.
+                    </span>
+                </p>
+                <p class="narrativa-texto">
+                    <span style="font-family: 'Miller Text Italic'; font-style: italic;">
+                        Todas as manhãs, há uma vítima mortal estendida nos ladrilhos da Eira, com o corpo manchado de sangue.
+                    </span>
+                </p>
+                <p class="narrativa-texto">
+                    <span style="font-family: 'Miller Text Italic'; font-style: italic;">
+                        É imperativo que os Aldeões se unam para acabar com esta misteriosa ameaça, antes que a Aldeia perca todos os seus habitantes."
+                    </span>
+                </p>
+            </div>
+        </div>
     </div>
     
     <div id="regras" class="section">
@@ -325,10 +533,9 @@
             </div>
         </div>
     </div>
-    
+            
     <div id="personagens" class="section">
         <h2>Personagens</h2>
-        <p>Lista de personagens do jogo...</p>
         <div class="carousel" id="carouselPersonagens">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -590,13 +797,67 @@
     </div>
     
     <div id="origem" class="section">
-        <h2>Origem do Jogo</h2>
-        <p>A história por trás do jogo...</p>
+        <div class="origem-container">
+            <!-- Título -->
+            <div class="origem-header">
+                <h2>
+                    <span style="font-family: 'Miller Text Italic'; font-style: italic; color: #ffc107;">A Aldeia adormece</span> 
+                    é um objeto que pretende materializar uma série de homenagens.
+                </h2>
+            </div>
+    
+            <!-- Lista de homenagens -->
+            <div class="origem-texto">
+                <div class="texto-item">
+                    <p>Ao jogo original, <span style="font-family: 'Miller Text Italic'; font-style: italic;">The Werewolves of Miller’s Hollow</span> (2001), criado por Philippe des Pallières e Hervé Marly;</p>
+                </div>
+                <div class="texto-item">
+                    <p>Às Aldeias de Xisto, em particular a Aldeia do Talasnal;</p>
+                </div>
+                <div class="texto-item">
+                    <p>Ao prazer de adquirir e jogar jogos de tabuleiro;</p>
+                </div>
+                <div class="texto-item">
+                    <p>Às pessoas, à amizade, aos encontros e às memórias que as gentes e os objetos carregam;</p>
+                </div>
+                <div class="texto-item">
+                    <p>Ao trabalho colaborativo, onde criativos de diferentes áreas se juntam por um objetivo comum;</p>
+                </div>
+                <div class="texto-item">
+                    <p>À criação de artefactos que enaltecem a produção como um fim em si mesmo e a fisicalidade dos objetos como característica rica de infinitas possibilidades.</p>
+                </div>
+            </div>
+        </div>
     </div>
     
     <div id="about" class="section">
-        <h2>Sobre Mim</h2>
-        <p>Informações sobre o criador do site.</p>
+        <div class="about-container">
+            <div class="about-header">
+                <h2>Sobre Mim</h2>
+                <p>Um pouco sobre quem sou e por que escolhi este tema.</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-photo">
+                    <img src="./images/eu_mae.jpeg" alt="Sua Foto">
+                </div>
+
+                <div class="about-text">
+                    <p>
+                        Olá! O meu nome é <strong>Maria</strong> e este é o meu TPC4 da uc PLN. 
+                        Numa conversa em que divagava sobre não saber do que gostava, a minha querida mãe relembrou-me dos milhentos jogos de tabuleiro que adoro e ainda tenho de arrumar...
+                    </p>
+                    <p>
+                        Assim, rapidamente escolhi o jogo  <strong>"A Aldeia Adormece"</strong> para protagonizar este trabalho de casa. 
+                        Este jogo apareceu na minha vida enquanto frequentava o ensino secundário e esteve presente em praticamente todos os meus intervalos de almoço, acampamentos, encontros de amigos e mochilas.
+                        Graças a ele, fiz muitas amizades e guardo memórias preciosas.
+                    </p>
+                    <p>
+                        Através deste site, espero compartilhar um pouco da minha paixão pelo jogo, narrativa e imaginação.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
     
     <script>
@@ -612,33 +873,10 @@
             document.getElementById('menu').style.display = 'none';
         }
         
-        function baralharCartas() {
-            let container = document.getElementById("cards-container");
-            container.innerHTML = "";
-            let cartas = ["Lobo", "Vidente", "Aldeão", "Caçador", "Bruxa", "Cupido"];
-            cartas = cartas.sort(() => Math.random() - 0.5);
-            
-            cartas.forEach((carta, index) => {
-                let div = document.createElement("div");
-                div.className = "card";
-                
-                let back = document.createElement("div");
-                back.className = "back";
-                back.innerText = "?";
-                
-                let front = document.createElement("div");
-                front.className = "front";
-                front.innerText = carta;
-                
-                div.appendChild(back);
-                div.appendChild(front);
-                container.appendChild(div);
-                
-                setTimeout(() => {
-                    div.classList.add("flipped");
-                }, index * 500);
-            });
-        }
+        // Exibir a seção "home" por padrão ao carregar a página
+        window.onload = function() {
+            showSection('home');
+        };
 
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-item');
