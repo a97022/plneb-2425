@@ -27,6 +27,6 @@ for designacao, descricao in conceitos:
 
 
 file_out = open("conceitos.json","w", encoding="utf-8")
-json.dump(conceitos_dict)
+json.dump(conceitos_dict, file_out, indent=4)
 
 print(conceitos_dict)

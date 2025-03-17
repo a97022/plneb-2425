@@ -1,31 +1,33 @@
-import re
 import json
+import re
 
 file = open("git_stor/plneb-2425/data/LIVRO-Doenças-do-Aparelho-Digestivo.txt", encoding="utf-8")
-texto = file.read()
-#print(texto)
+texto=file.read()
+file.close()
 
-file_conceitos = open("Aula4/conceitos.json", encoding="utf-8" )
-conceitos = json.load(file_conceitos)
-file_conceitos.close()
+with open("conceitos.json", "r", encoding="utf-8") as file_conceitos:
+    conceitos = json.load(file_conceitos)
 
-#limpar
-#texto = re.sub("\f","",texto)
-
-black_list= ["de", "e", "para", "os"]
+blacklist=["de","a","e","o","mas","para","este","os","as"]
 
 def gera_termo_bold(matched):
-    text = matched.group(0)
-    #print(text)
-    if text in conceitos and text not in black_list:
-        return f'<a href= "" title="{conceitos[text]}">{text}</a>'
+    #print(matched)
+    titulo = matched.group(0)
+    if titulo in conceitos.keys() and titulo not in blacklist:
+        return f"<a href='plneb-2425/Aulas/Aula3/dicionario_medico.html#{titulo}' target = '_blank' title='{conceitos[titulo]}'>{titulo}</a>" #vai buscar aos conceitos a definição do titulo
+        #return f"<b>{titulo}</b>"
     else:
-        return text
+        return f"{titulo}"
+    
 
-texto = re.sub(r"\n", "<br>", texto)
-texto = re.sub("\b(\w+)\b",gera_termo_bold,texto) #para ir palavra a palavra e ver se está no dicionário
+texto = re.sub("\n","<br>",texto)
 
-file_html = open("Aula4/LIVRO-Doenças-do-Aparelho-Digestivo.html", "w", encoding="utf-8")
-file_html.write(texto)
+texto = re.sub(r"\f", "<hr>",texto)
 
-file.close()
+texto=re.sub(r"\b(\w+)\b",gera_termo_bold,texto)
+
+#print(repr(texto))
+
+with open("dic_novo.html", "w", encoding="utf-8") as file_dic:
+    file_dic.write(texto)
+    file_dic.close()

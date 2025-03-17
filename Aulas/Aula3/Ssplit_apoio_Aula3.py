@@ -38,7 +38,7 @@ def gera_html(conceitos):
 
     for designacao, descricao in conceitos:
         html_conceitos += f"""
-                    <div>
+                    <div id= "{designacao}">
                     <p><b>{designacao}</b></p>
                     <p>{descricao}</p>
                     </div>
