@@ -16,7 +16,7 @@ O principal objetivo do projeto foi desenvolver uma página web que permitisse:
 - Facultar informação sobre a origem do jogo
 - Facultar informação sobre mim e as minhas motivações 
 
-### 1.3. Ferramentas Utilizadas
+### 1.2. Ferramentas Utilizadas
 - **HTML5**: Para a estrutura da página.
 - **CSS3**: Para o design e animações.
 - **JavaScript**: Para a lógica e interatividade.
@@ -32,7 +32,7 @@ A página foi dividida em seções principais:
 - **Jogo**: Animação de baralhar cartas e simulação do jogo.
 - **Sobre Mim**: Informações sobre o desenvolvedor.
 
-### 2.4. Desafios Encontrados
+### 2.2. Desafios Encontrados
 - **Design**:
   - Todos os pormenores levaram tempo a desenvolver e ainda não estão perfeitos (setas para passar as personagens)
 - **Java**:
@@ -42,11 +42,11 @@ A página foi dividida em seções principais:
 
 ---
 
-### 4.2. Próximos Passos
+### 3. Próximos Passos
 - Adicionar mais funcionalidades à página: simulação de jogo
 
 ---
 
-## 5. **Referências**
+## 4. **Referências**
 
 - https://aaldeiadormece.estaminestudio.com
