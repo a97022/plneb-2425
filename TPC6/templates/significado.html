@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container m-0 text-center d-flex align-items-center">
+    <div class="col-sm-1 m-0">
+        <img width="50px" src="https://static.thenounproject.com/png/469207-200.png"></img>
+    </div>
+    <div class="col-sm-9 m-0">
+        <h1 class="text-start display-4">Resultados para: {{ termo }}</h1>
+    </div>
+</div>
+
+<div class="m-5">
+    {% if conceitos %}
+        {% for conceito, descricao in conceitos.items() %}
+            <div class="mb-4">
+                <h2 class="display-6">{{ conceito | safe }}</h2>
+                <p class="fs-3">{{ descricao | safe }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="fs-3">Nenhum resultado encontrado para "{{ termo }}".</p>
+    {% endif %}
+</div>
+
+<a href="/conceitos" class="btn btn-primary mt-3">Voltar</a>
+{% endblock %}

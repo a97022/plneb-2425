@@ -1,0 +1,27 @@
+{% extends 'layout.html'%}
+
+{%block body%}
+
+<nav class="navbar fixed bg-white navbar-light justify-content-between">
+    <h1 class="text-start display-5">Conceitos</h1>
+    <form class="form-inline" action="{{ url_for('listarconceitos') }}" method="GET">
+        <div class="input-group">
+            <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </div>
+    </form>
+</nav>
+
+    <div class="list-group mt-4">
+        {%for conceito in conceitos%}
+        <a href="/conceitos/{{conceito}}" class="list-group-item list-group-item-action">{{conceito}}</a> 
+    {%endfor%}
+    </div>
+
+    
+
+
+
+{%endblock%}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
