@@ -23,12 +23,12 @@ def get_doenca_info(url_href):
     
     # Extração das informações
     resumo_div = div_content.find("div", class_="field-name-body")
-    causas = div_content.find("strong", text="Causas")
-    sintomas = div_content.find("strong", text="Sintomas")
-    diagnostico = div_content.find("strong", text="Diagnóstico")
-    tratamento = div_content.find("strong", text="Tratamento")
+    causas = div_content.find("strong", string="Causas")
+    sintomas = div_content.find("strong", string="Sintomas")
+    diagnostico = div_content.find("strong", string="Diagnóstico")
+    tratamento = div_content.find("strong", string="Tratamento")
     nota = div_content.find("div", class_="field-name-field-nota")
-    artigos_relacionados = div_content.find("div", class_="field-name-field-artigos-relacionados")
+    artigos_relacionados_span = div_content.find("span", string="Artigos relacionados")
     
     resumo_text = resumo_div.get_text(strip=True) if resumo_div else "Não disponível"
     causas_text = causas.find_next("p").get_text(strip=True) if causas else "Não disponível"
@@ -47,8 +47,8 @@ def get_doenca_info(url_href):
     
     # Extração dos artigos relacionados
     artigos_relacionados_dict = {}
-    if artigos_relacionados:
-        for artigo in artigos_relacionados.find_all("h3"):
+    if artigos_relacionados_span:
+        for artigo in artigos_relacionados_span.find_next_siblings("h3"):
             artigo_title = artigo.get_text(strip=True)
             artigo_url = artigo.find("a")["href"]
             artigos_relacionados_dict[artigo_title] = artigo_url
