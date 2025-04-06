@@ -87,5 +87,5 @@ for a in range(ord("a"), ord("z") + 1):
     res = res | doencas_letra(letra)
     
 #print(res)
-with open("doencas_tpc.json", "w", encoding="utf-8") as f_out:
+with open("plneb-2425/TPC8/doencas_tpc.json", "w", encoding="utf-8") as f_out:
     json.dump(res, f_out, indent=4, ensure_ascii=False)
