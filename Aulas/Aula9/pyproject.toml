@@ -1,0 +1,10 @@
+[project]
+name="txt_to_conll"
+authors= [{name= "João", email="joao@gmail.com"}]
+license= {text= "MIT"}
+version="0.0.1"
+description= "Converts texts to conll like format"
+dependencies=["spacy"]
+
+[project.scripts]
+conll = "txt_to_conll:main"
